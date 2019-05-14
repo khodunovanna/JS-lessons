@@ -21,23 +21,26 @@ let appData = {
   expenses: {},
   optionalExpenses: {},
   income: [],
-  savings: false
+  savings: true
 };
 
-for (let i=0; i<2; i++) {
-  let article = prompt("Введите обязательную статью расходов в этом месяце", '');
-  let pay = prompt("Во сколько обойдется?", '');
-
-  if ((typeof(article))==='string' && (typeof (article)) != null && (typeof (pay)) != null 
-      && article != '' && pay != '' && article.length < 50) {
-      console.log("done");
-      appData.expenses[article] = pay;
-  } else {
-    i = i-1;
+function chooseExpenses() {
+  for (let i=0; i<2; i++) {
+    let article = prompt("Введите обязательную статью расходов в этом месяце", '');
+    let pay = prompt("Во сколько обойдется?", '');
+  
+    if ((typeof(article))==='string' && (typeof (article)) != null && (typeof (pay)) != null 
+        && article != '' && pay != '' && article.length < 50) {
+        console.log("done");
+        appData.expenses[article] = pay;
+    } else {
+      i = i-1;
+    }
   }
 }
+chooseExpenses();
 
-appData.budgetDaily = appData.budget/30;
+appData.budgetDaily = (appData.budget/30).toFixed(1);   /* Округляем число, если 0-до целого, если 1-до одного зака после зяпятой и он меняет переменную и возвращает строковое значение */
 
 alert(appData.budgetDaily + " - ежеденевный бюджет");
 
@@ -51,12 +54,21 @@ if (appData.budgetDaily < 100) {
   console.log("Произошла ошибка");
 }
 
+function checkSavings() {
+  if(appData.savings == true) {
+    let save = +prompt("Какова сумма накоплений?"),
+        percent = +prompt("Под какой процент?");
+
+    appData.monthIncome = save/100/12*percent;
+    alert("Доход в месяц с вашего депозита: " + appData.monthIncome);
+  }
+}
+checkSavings();
 
 // let x = 5;
 // alert ( x++ );
 
 // alert ( "1"[0]);
-
 // console.log([]+false-null+true);
 
 // console.log([] + 1 + 2);
