@@ -1,4 +1,4 @@
-'use strict'; /* дириктива, это означает, что мы пишем на стандарте us6  */
+"use strict"; /* дириктива, это означает, что мы пишем на стандарте us6  */
 
 // var a = 10;
 // let b = 20;
@@ -6,29 +6,29 @@
 // a = 30;
 // console.log(a);
 
-var number = 5;
-var string = "Hello!";
-var sym = Symbol();
-var boolean = true;
-null; /*когда чего-то в коде просто не существует*/
-undefined; /*когда переменная существует но ей ничего не присвоено(не имеет значения)*/
-var obj = {};
+// var number = 5;
+// var string = "Hello!";
+// var sym = Symbol();
+// var boolean = true;
+// null; /*когда чего-то в коде просто не существует*/
+// undefined; /*когда переменная существует но ей ничего не присвоено(не имеет значения)*/
+// var obj = {};
 
-console.log(4/0);
-console.log('string'*9);
+// console.log(4/0);
+// console.log('string'*9);
 
-let person = {
-  name: "John",
-  age: 25,
-  isMarried: false
-};
+// let person = {
+//   name: "John",
+//   age: 25,
+//   isMarried: false
+// };
 
-// console.log(person.name);
-console.log(person["name"]);
+// // console.log(person.name);
+// console.log(person["name"]);
 
-let arr = ['plam.png', 'orange.jpg', 'apple.bmp']; /*массив данных, может содержать любые значения, не обязательно однородные */
+// let arr = ['plam.png', 'orange.jpg', 'apple.bmp']; /*массив данных, может содержать любые значения, не обязательно однородные */
 
-console.log(arr[2]);
+// console.log(arr[2]);
 
 // alert("Hello world!");
 // confirm("Are you here?");
@@ -57,9 +57,9 @@ console.log(arr[2]);
 // console.log("2" === 2); /* сравнение по типам данных */
 
 
-let isChecked = true,
-    isClose = false;
+// let isChecked = true,
+//     isClose = false;
 
-console.log(isChecked && isClose); /* и */
-console.log(isChecked || isClose); /* или */
-console.log(isChecked || !isClose); /* или не */
+// console.log(isChecked && isClose); /* и */
+// console.log(isChecked || isClose); /* или */
+// console.log(isChecked || !isClose); /* или не */
