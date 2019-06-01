@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //Timer
 
-  let deadline = '2019-06-01';
+  let deadline = '2019-06-19';
 
   function getTimeRemaining(endtime) {
     let t = Date.parse(endtime) - Date.parse(new Date()), //parse-превращает любую дату в милисекунды
@@ -86,3 +86,39 @@ window.addEventListener('DOMContentLoaded', function() {
   setClock('timer', deadline);
 
 });
+
+//Modal
+
+let more = document.querySelector('.more'),
+    overlay = document.querySelector('.overlay'),
+    close = document.querySelector('.popup-close '),
+    description = document.querySelector('.description-btn'),
+    tabbContent = document.querySelector('.info-tabcontent');
+
+    tabbContent.addEventListener('click', function(event) {
+      let target = event.target;
+        if(target && target.classList.contains('description-btn')){
+           overlay.style.display = 'block';
+           description.classList.add('more-splash');
+           document.body.style.overflow = 'hidden';
+        }
+    });
+
+    more.addEventListener('click', function() {
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden';
+    });
+
+    close.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    });
+
+    // let age = document.getElementById('age');
+    //   function showUser(surname, name) {
+	  //     alert("Пользователь " + surname + " " + name + ", его возраст " + age.value);
+    //   }
+    //   showUser('Татаркина', 'Анна');
+
