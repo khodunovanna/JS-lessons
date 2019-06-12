@@ -26,6 +26,7 @@ class Options {
   
   console.log(newOptions.newDiv());
   
+  //не забыть подключчить файл в html!!!!!
 
 // let div = document.createElement('div'),
 //     info = document.querySelector('.info-header');

@@ -85,8 +85,6 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   setClock('timer', deadline);
 
-});
-
 //Modal
 
 let more = document.querySelector('.more'),
@@ -121,4 +119,99 @@ let more = document.querySelector('.more'),
 	  //     alert("Пользователь " + surname + " " + name + ", его возраст " + age.value);
     //   }
     //   showUser('Татаркина', 'Анна');
+
+
+    //Form - узнать подробнее
+     
+    let message = {
+      loading: "Загрузка...",
+      seccess: "Спасибо, скоро мы с вами свяжемся",
+      failure: "Что-то пошло не так"
+    };
+
+    let form = document.querySelector(".main-form"),
+        input = form.getElementsByTagName("input"),
+        statusMessage = document.createElement("div");
+
+        statusMessage.classList.add('status');
+    
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            form.appendChild(statusMessage);
+
+            let request = new XMLHttpRequest();
+
+            //request.open(method, url, async, login, password); // наш путь к серверу, где async - ассинхронность запросов, по умолчанию true
+            request.open('POST', 'server.php');
+            //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');//говорим серверу что отправляем обычную форму
+            request.setRequestHeader('Content-type', 'applicaton/json; charset=ulf-8');//говорим серверу что отправляем данные в формате json
+
+            let formData = new FormData(form);//получаем все что ответил пользователь
+
+            let obj = {}; //заполним его данными которые есть в форме и потом преобразуем в json формат
+            formData.forEach(function(value, key) {
+              obj[key] = value;
+            }); //превратили наш обьект formData в обычный читаемый обьект
+
+            let json = JSON.stringify(obj); //метод stringify - превращает js-обьекты в json формат
+
+            //request.send(formData);
+            request.send(json);
+
+            request.addEventListener('readystatechange', function() {
+              if(request.readyState < 4) {
+                statusMessage.innerHTML = message.loading;
+              } else if (request.readyState === 4 && request.status == 200) {
+                  statusMessage.innerHTML = message.seccess;
+              } else {
+                  statusMessage.innerHTML = message.failure;
+              }
+            });
+
+            for(let i = 0; i < input.length; i++) {
+              input[i].value = '';
+            } //очистили после отправки формы все инпуты(поля)
+
+        });
+
+
+
+    //Form - контактная форма
+
+    let formCont = document.getElementById('form'),
+        inputCont = formCont.getElementsByTagName('input');
+
+    formCont.addEventListener('submit', function(event) {
+        event.preventDefault();
+        formCont.appendChild(statusMessage);
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'server.php');
+        request.setRequestHeader('Content-type', 'applicaton/json; charset=ulf-8');
+
+        let formData = new FormData(formCont);
+        let obj = {}; 
+        formData.forEach(function(value, key) {
+          obj[key] = value;
+        });
+        let json = JSON.stringify(obj);
+
+        request.send(json);
+
+        request.addEventListener('readystatechange', function() {
+            if(request.readyState < 4) {
+              statusMessage.innerHTML = message.loading;
+            } else if(request.readyState == 4 && request.status == 200) {
+              statusMessage.innerHTML = message.seccess;
+            } else {
+              statusMessage.innerHTML = message.failure;
+            }
+        });
+
+        for (let i = 0; i < inputCont.length; i++) {
+          inputCont[i].value = '';
+        }
+    });
+
+});
 
